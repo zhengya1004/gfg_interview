@@ -216,8 +216,20 @@ def compute_metrics(data: pd.DataFrame) -> Tuple[pd.DataFrame, pd.DataFrame, pd.
     - ABS: average basket size, which is revenue/orders
     - CIR: Cost to Income Ratio, which is spend/revenue
 
-    :param data:
-    :return:
+    :param data: with columns:
+     - Spend
+     - Visits
+     - Orders
+     - Revenue
+    :return: dataframe with columns:
+     - Spend
+     - Visits
+     - Orders
+     - Revenue
+     - CR
+     - ABS
+     - CIR
+     - Channel_Type
     """
 
     data['Spend'] = data['Spend'].astype('int64')

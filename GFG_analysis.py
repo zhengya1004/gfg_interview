@@ -209,7 +209,20 @@ def plot_data_paid_free(df: pd.DataFrame) -> None:
 
 
 def compute_metrics(raw_df: pd.DataFrame) -> Tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame, pd.DataFrame]:
+    """Calculate a few metrics for each channel each week.
+
+    This function will calculate the following metrics:
+    - CR: conversion rate, which is orders/visits
+    - ABS: average basket size, which is revenue/orders
+    - CIR: Cost to Income Ratio, which is spend/revenue
+
+    :param raw_df:
+    :return:
+    """
+
+    # We only read row 2 (inclusive) to row 20 (exclusive) to remove the data description
     data = raw_df.iloc[2:20, :].reset_index(drop=True)
+
     columns = ['Channel', 'Paid_Free', 'Spend', 'Visits', 'Orders', 'Revenue', 'Week']
     data.columns = columns
     data['Spend'] = data['Spend'].astype('int64')

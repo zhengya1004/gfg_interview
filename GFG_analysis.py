@@ -3,15 +3,13 @@ import matplotlib.pyplot as plt
 from scipy.stats import pearsonr
 
 
-def plot_revenue_cr_abs(df: pd.DataFrame):
-    """
-    plot revenue vs. conversion rate
+def plot_revenue_cr_abs(df: pd.DataFrame) -> None:
+    """Plot revenue vs. conversion rate.
+
     :param df: with columns:
-     - CR
-     - Revenue
+     - Channel_Type
      - Spend
-     - ABS
-     - Visits
+     - Revenue
     :return:
     """
 
@@ -28,6 +26,18 @@ def plot_revenue_cr_abs(df: pd.DataFrame):
     ax.set_xlabel("Spend")
 
     plt.savefig("plots/analysis_Revenue_Spend.png")
+
+
+def preform_hypothesis_test(df: pd.DataFrame) -> None:
+    """Perform the hypothesis testing
+
+    :param df: with columns:
+     - Channel_Type
+     - Paid_Free
+     - Spend
+     - Revenue
+    :return:
+    """
     df_app = df[df['Channel_Type'] == 'App install network'].copy()
     df_web = df[df['Channel_Type'] == 'Web channel'].copy()
     df_newsletter = df[df['Channel_Type'] == 'Newsletters'].copy()
@@ -49,9 +59,10 @@ def plot_revenue_cr_abs(df: pd.DataFrame):
     df_correlation.to_csv("output/df_correlation.csv", index=False)
 
 
-def plot_data_channel_type(df: pd.DataFrame):
-    """
-    plot the below metrics for each channel type(Web Channel, App install network, Newsletter, PR):
+def plot_data_channel_type(df: pd.DataFrame) -> None:
+    """Plot the some metrics for each channel type.
+
+    This function will plot the following metrics for each channel type:
      - average CR per week per channel
      - average ABS per week per channel
      - average CIR per week per channel
@@ -98,9 +109,10 @@ def plot_data_channel_type(df: pd.DataFrame):
     plt.savefig("plots/analysis_channel_type.png")
 
 
-def plot_data_week(df: pd.DataFrame):
-    """
-    plot the below metrics for each week:
+def plot_data_week(df: pd.DataFrame) -> None:
+    """Plot the some metrics for each week.
+
+    This function will plot the following metrics for each week:
      - average CR over all channels
      - average ABS over all channels
      - average CIR overall channels
@@ -145,9 +157,10 @@ def plot_data_week(df: pd.DataFrame):
     plt.savefig("plots/analysis_week.png")
 
 
-def plot_data_paid_free(df: pd.DataFrame):
-    """
-    plot the below metric:
+def plot_data_paid_free(df: pd.DataFrame) -> None:
+    """Plot the some metrics for paid/free channels.
+
+    This function will plot the following metrics for paid and free channels:
      - average CR for all paid channels
      - average CR for all free channels
      - average ABS for all paid channels
@@ -222,6 +235,8 @@ def main():
     plot_data_paid_free(data_paid_free)
     plot_data_channel_type(data_channel_type)
     plot_revenue_cr_abs(data)
+
+    preform_hypothesis_test(data)
 
 
 if __name__ == '__main__':

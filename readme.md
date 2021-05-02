@@ -11,7 +11,7 @@ go the project folder and run the command below
 $ conda env create -f environment.yml
 ```
 
-To run the script, go the project folder and run script as bellow
+To run the script, go to the project folder and run script as below
 ```ssh
 $ python GFG_analysis.py
 ``` 

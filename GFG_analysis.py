@@ -208,7 +208,7 @@ def plot_data_paid_free(df: pd.DataFrame) -> None:
     plt.savefig("plots/analysis_paid_free.png")
 
 
-def compute_metrics(raw_df: pd.DataFrame) -> Tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame, pd.DataFrame]:
+def compute_metrics(data: pd.DataFrame) -> Tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame, pd.DataFrame]:
     """Calculate a few metrics for each channel each week.
 
     This function will calculate the following metrics:
@@ -216,15 +216,10 @@ def compute_metrics(raw_df: pd.DataFrame) -> Tuple[pd.DataFrame, pd.DataFrame, p
     - ABS: average basket size, which is revenue/orders
     - CIR: Cost to Income Ratio, which is spend/revenue
 
-    :param raw_df:
+    :param data:
     :return:
     """
 
-    # We only read row 2 (inclusive) to row 20 (exclusive) to remove the data description
-    data = raw_df.iloc[2:20, :].reset_index(drop=True)
-
-    columns = ['Channel', 'Paid_Free', 'Spend', 'Visits', 'Orders', 'Revenue', 'Week']
-    data.columns = columns
     data['Spend'] = data['Spend'].astype('int64')
     data['Visits'] = data['Visits'].str.replace(',', '').astype('int64')
     data['Orders'] = data['Orders'].str.replace(',', '').astype('int64')
@@ -247,10 +242,25 @@ def compute_metrics(raw_df: pd.DataFrame) -> Tuple[pd.DataFrame, pd.DataFrame, p
     return data, data_week, data_channel_type, data_paid_free
 
 
+def read_raw_data(raw_df: pd.DataFrame) -> pd.DataFrame:
+    """Extract row 2(inclusive) to row 20(exclusive),rename the columns
+
+    :param raw_df:
+    :return:
+    """
+    # We only read row 2 (inclusive) to row 20 (exclusive) to remove the data description
+    data = raw_df.iloc[2:20, :].reset_index(drop=True)
+
+    columns = ['Channel', 'Paid_Free', 'Spend', 'Visits', 'Orders', 'Revenue', 'Week']
+    data.columns = columns
+    return data
+
+
 def main():
     raw_df = pd.read_csv("data/GFG Data Analyst test.csv")
+    df = read_raw_data(raw_df)
 
-    data, data_week, data_channel_type, data_paid_free = compute_metrics(raw_df)
+    data, data_week, data_channel_type, data_paid_free = compute_metrics(df)
 
     plot_data_week(data_week)
     plot_data_paid_free(data_paid_free)

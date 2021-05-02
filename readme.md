@@ -17,4 +17,5 @@ $ python GFG_analysis.py
 ``` 
 
 The plots will be shown in the folder *plots/*.
+The hypothesis testing results will be in the folder *output/*
 

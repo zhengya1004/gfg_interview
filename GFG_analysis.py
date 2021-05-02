@@ -46,7 +46,7 @@ def plot_revenue_cr_abs(df: pd.DataFrame):
     df_correlation = pd.DataFrame(data=correlation, columns=['Correlation_Coefficient', 'p_value'],
                                   index=['app_install_network', 'web_channel', 'newsletters', 'PR', 'paid',
                                          'free']).reset_index(drop=False).rename(columns={'index': 'type'})
-    df_correlation.to_csv("data/df_correlation.csv", index=False)
+    df_correlation.to_csv("output/df_correlation.csv", index=False)
 
 
 def plot_data_channel_type(df: pd.DataFrame):

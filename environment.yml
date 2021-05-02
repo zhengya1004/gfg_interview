@@ -6,3 +6,5 @@ dependencies:
   - pandas
   - matplotlib
   - scipy
+prefix: C:\Users\Zhengya\anaconda3\envs\gfg_interview
+

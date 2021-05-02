@@ -27,7 +27,7 @@ def plot_revenue_cr_abs(df: pd.DataFrame):
     ax.set_ylabel("Revenue")
     ax.set_xlabel("Spend")
 
-    plt.savefig("C:/Studies/Interview Prep/GFG/plots/analysis_Revenue_Spend.png")
+    plt.savefig("plots/analysis_Revenue_Spend.png")
     df_app = df[df['Channel_Type'] == 'App install network'].copy()
     df_web = df[df['Channel_Type'] == 'Web channel'].copy()
     df_newsletter = df[df['Channel_Type'] == 'Newsletters'].copy()
@@ -46,7 +46,7 @@ def plot_revenue_cr_abs(df: pd.DataFrame):
     df_correlation = pd.DataFrame(data=correlation, columns=['Correlation_Coefficient', 'p_value'],
                                   index=['app_install_network', 'web_channel', 'newsletters', 'PR', 'paid',
                                          'free']).reset_index(drop=False).rename(columns={'index': 'type'})
-    df_correlation.to_csv("C:/Studies/Interview Prep/GFG/data/df_correlation.csv", index=False)
+    df_correlation.to_csv("data/df_correlation.csv", index=False)
 
 
 def plot_data_channel_type(df: pd.DataFrame):
@@ -95,7 +95,7 @@ def plot_data_channel_type(df: pd.DataFrame):
 
     plt.subplots_adjust(wspace=0.3, bottom=0.2)
 
-    plt.savefig("C:/Studies/Interview Prep/GFG/plots/analysis_channel_type.png")
+    plt.savefig("plots/analysis_channel_type.png")
 
 
 def plot_data_week(df: pd.DataFrame):
@@ -142,7 +142,7 @@ def plot_data_week(df: pd.DataFrame):
 
     plt.subplots_adjust(wspace=0.4, bottom=0.2)
 
-    plt.savefig("C:/Studies/Interview Prep/GFG/plots/analysis_week.png")
+    plt.savefig("plots/analysis_week.png")
 
 
 def plot_data_paid_free(df: pd.DataFrame):
@@ -191,11 +191,11 @@ def plot_data_paid_free(df: pd.DataFrame):
 
     plt.subplots_adjust(wspace=0.4, bottom=0.2)
 
-    plt.savefig("C:/Studies/Interview Prep/GFG/plots/analysis_paid_free.png")
+    plt.savefig("plots/analysis_paid_free.png")
 
 
 def main():
-    raw_df = pd.read_csv("C:/Studies/Interview Prep/GFG/data/GFG Data Analyst test.csv")
+    raw_df = pd.read_csv("data/GFG Data Analyst test.csv")
     data = raw_df.iloc[2:20, :].reset_index(drop=True)
     columns = ['Channel', 'Paid_Free', 'Spend', 'Visits', 'Orders', 'Revenue', 'Week']
     data.columns = columns

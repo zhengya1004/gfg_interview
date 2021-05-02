@@ -1,6 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 from scipy.stats import pearsonr
+from typing import *
 
 
 def plot_revenue_cr_abs(df: pd.DataFrame) -> None:
@@ -207,8 +208,7 @@ def plot_data_paid_free(df: pd.DataFrame) -> None:
     plt.savefig("plots/analysis_paid_free.png")
 
 
-def main():
-    raw_df = pd.read_csv("data/GFG Data Analyst test.csv")
+def compute_metrics(raw_df: pd.DataFrame) -> Tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame, pd.DataFrame]:
     data = raw_df.iloc[2:20, :].reset_index(drop=True)
     columns = ['Channel', 'Paid_Free', 'Spend', 'Visits', 'Orders', 'Revenue', 'Week']
     data.columns = columns
@@ -230,6 +230,14 @@ def main():
     data_paid_free = data.groupby('Paid_Free').agg(CR=('CR', 'mean'), ABS=('ABS', 'mean'),
                                                    CIR=('CIR', 'mean')).reset_index(
         drop=False)
+
+    return data, data_week, data_channel_type, data_paid_free
+
+
+def main():
+    raw_df = pd.read_csv("data/GFG Data Analyst test.csv")
+
+    data, data_week, data_channel_type, data_paid_free = compute_metrics(raw_df)
 
     plot_data_week(data_week)
     plot_data_paid_free(data_paid_free)

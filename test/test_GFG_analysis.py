@@ -5,7 +5,9 @@ from GFG_analysis import compute_metrics
 
 
 class MyTestCase(unittest.TestCase):
-    def test_compute_metrics(self):
+
+    @staticmethod
+    def test_compute_metrics():
         data = [['App install network A', 'Paid', '20', '3,000', '30', '1,000', '42'],
                 ['App install network B', 'Free', '80', '20,020', '50', '200', '42'],
                 ['Web channel A', 'Paid', '19', '4', '35', '20', '42'],
@@ -41,10 +43,10 @@ class MyTestCase(unittest.TestCase):
 
         df_output, df_data_week, df_data_channel_type, df_data_paid_free = compute_metrics(df)
         df_expected_output['Spend'] = df_expected_output['Spend'].astype('int64')
-        assert_frame_equal(df_expected_output, df_output, check_exact=False, check_less_precise=3)
-        assert_frame_equal(df_expected_data_week, df_data_week, check_exact=False, check_less_precise=4)
-        assert_frame_equal(df_expected_data_paid_free, df_data_paid_free, check_exact=False, check_less_precise=4)
-        assert_frame_equal(df_expected_data_channel_type, df_data_channel_type, check_exact=False, check_less_precise=4)
+        assert_frame_equal(df_expected_output, df_output, check_exact=False, atol=1e-2)
+        assert_frame_equal(df_expected_data_week, df_data_week, check_exact=False, atol=1e-2)
+        assert_frame_equal(df_expected_data_paid_free, df_data_paid_free, check_exact=False, atol=1e-2)
+        assert_frame_equal(df_expected_data_channel_type, df_data_channel_type, check_exact=False, atol=1e-2)
 
 
 if __name__ == '__main__':

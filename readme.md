@@ -5,6 +5,12 @@
 The python script *GFG_analysis.py* will product plots needed
 for the interview analysis.
 
+To create the virtual environment for this project, 
+go the project folder and run the command below
+```
+$ conda env create -f environment.yml
+```
+
 To run the script, go the project folder and run script as bellow
 ```ssh
 $ python GFG_analysis.py

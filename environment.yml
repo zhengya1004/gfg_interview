@@ -1,0 +1,8 @@
+name: gfg_interview
+channels:
+  - defaults
+dependencies:
+  - python=3.7
+  - pandas
+  - matplotlib
+  - scipy

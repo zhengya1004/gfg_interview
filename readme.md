@@ -6,7 +6,7 @@ The python script *GFG_analysis.py* will produce plots needed
 for the interview analysis.
 
 To create the virtual environment for this project, 
-go the project folder and run the command below
+go to the project folder and run the command below
 ```
 $ conda env create -f environment.yml
 ```

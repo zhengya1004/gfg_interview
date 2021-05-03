@@ -2,7 +2,7 @@
 
 ## Instruction to run the code
 
-The python script *GFG_analysis.py* will product plots needed
+The python script *GFG_analysis.py* will produce plots needed
 for the interview analysis.
 
 To create the virtual environment for this project, 
